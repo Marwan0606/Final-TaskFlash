@@ -23,7 +23,7 @@ const getSingleTask = async (req, res) => {
   try {
     const id = req.params.id
     const taskID = id
-    const task = await Task.findOne({id: taskID})
+    const task = await Task.findOne({_id: taskID})
 
     if (!task) {
       return res.status(404).json({msg: `No task with id: ${taskID}`})
