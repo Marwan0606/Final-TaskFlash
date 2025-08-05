@@ -5,7 +5,7 @@ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com
 
 // firebase confingurations taken from firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyBgdGJxEuBLtkWbXukRFITZ0S6zg3mwtPY",
+  apiKey: "",
   authDomain: "taskflash-7a0d8.firebaseapp.com",
   projectId: "taskflash-7a0d8",
   storageBucket: "taskflash-7a0d8.appspot.com",
