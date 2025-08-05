@@ -55,7 +55,7 @@ const TaskSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: true
+    default: 'moving'
   },
   deadline: {
     type: Date,

@@ -314,11 +314,11 @@
       <div class="modal-body">
         <div class="field">
           <label>Title</label>
-          <input type="text" placeholder="e.g., Help move boxes" />
+          <input type="text" placeholder="e.g., Help move boxes" class="js-title" />
         </div>
         <div class="field">
           <label>Description</label>
-          <textarea placeholder="Describe what you need done"></textarea>
+          <textarea placeholder="Describe what you need done" class="js-description"></textarea>
         </div>
         <div class="field-group">
           <div class="field">
@@ -327,18 +327,25 @@
           </div>
           <div class="field">
             <label>Budget</label>
-            <input type="text" placeholder="$50 - $100" />
+            <input type="text" placeholder="$50 - $100" class="js-price"/>
           </div>
         </div>
         <div class="field">
           <label>Location</label>
           <input type="text" placeholder="e.g., Midtown" />
         </div>
-        <button class="primary full" id="submit-task">Post Task</button>
+        <button class="primary full js-post-button" id="submit-task">Post Task</button>
       </div>
     </div>
   </div>
 
-  <script src="sidebar-and-post.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="scripts/sidebar-and-post.js"></script>
+  <script src="scripts/createTask.js"></script>
 </body>
 </html>
