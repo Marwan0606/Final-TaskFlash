@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TaskFlash Poster Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/01-reset.css" />
+  <link rel="stylesheet" href="styles/02-variables.css" />
+  <link rel="stylesheet" href="styles/03-layout.css" />
+  <link rel="stylesheet" href="styles/04-sidebar.css" />
+  <link rel="stylesheet" href="styles/05-topbar.css" />
+  <link rel="stylesheet" href="styles/06-hero-filters.css" />
+  <link rel="stylesheet" href="styles/07-task-cards.css" />
+  <link rel="stylesheet" href="styles/08-overview.css" />
+  <link rel="stylesheet" href="styles/09-modal.css" />
+  <link rel="stylesheet" href="styles/10-utilities.css" />
+  <link rel="stylesheet" href="styles/11-responsive.css" />
+
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <div class="logo-symbol">TF</div>
+        <div class="logo-text">TaskFlash</div>
+      </div>
+      <nav class="nav">
+        <button class="nav-btn active" aria-label="Home">
+          <div class="icon">🏠</div>
+          <div class="label">Home</div>
+        </button>
+        <button class="nav-btn" aria-label="My Tasks">
+          <div class="icon">📋</div>
+          <div class="label">My Tasks</div>
+        </button>
+        <button class="nav-btn" aria-label="Proposals">
+          <div class="icon">✉️</div>
+          <div class="label">Proposals</div>
+        </button>
+        <button class="nav-btn" aria-label="Payments">
+          <div class="icon">💳</div>
+          <div class="label">Payments</div>
+        </button>
+        <button class="nav-btn" aria-label="Settings">
+          <div class="icon">⚙️</div>
+          <div class="label">Settings</div>
+        </button>
+      </nav>
+      <div class="bottom-icon" aria-label="Help">
+        <div class="icon">?</div>
+        <div class="label">Help</div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <!-- Top bar -->
+      <header class="topbar">
+        <div class="status">
+          <div class="available">
+            Posting Mode
+            <label class="toggle">
+              <input type="checkbox" checked />
+              <span class="slider"></span>
+            </label>
+            <span class="online">Active</span>
+          </div>
+        </div>
+        <div class="user-panel">
+          <div class="notifications">
+            🔔<span class="badge">5</span>
+          </div>
+          <div class="profile">
+            <div class="avatar" aria-label="User avatar"></div>
+            <div class="info">
+              <div class="name">Jane Smith</div>
+              <div class="rating">⭐ 4.7 <span class="small">(89 reviews)</span></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero-full">
+        <div class="hero">
+          <div class="welcome">
+            <h1>Hi Jane, ready to get help? <span class="wave">📝</span></h1>
+            <p>You’ve posted <strong>12 tasks</strong> and have <strong>4 active</strong> right now.</p>
+          </div>
+          <div class="actions">
+            <button class="primary large" id="new-task-btn">Post New Task</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Left: Active tasks & posted tasks -->
+        <div class="left-column">
+          <!-- Filters / search -->
+          <div class="filters">
+            <div class="search">
+              <input type="text" placeholder="Search your tasks..." aria-label="Search tasks" />
+            </div>
+            <div class="dropdowns">
+              <div class="pill">All Status ▾</div>
+              <div class="pill">Category ▾</div>
+              <div class="pill">Budget ▾</div>
+            </div>
+          </div>
+
+          <!-- Active Tasks section -->
+          <div class="section-title">
+            <h2>Active Tasks</h2>
+            <div class="found">4 tasks</div>
+          </div>
+          <div class="task-grid">
+            <div class="task-card">
+              <div class="task-body">
+                <div class="task-meta">
+                  <div class="title">Help assemble IKEA furniture</div>
+                  <div class="status-badge in-progress">In Progress</div>
+                </div>
+                <div class="details">
+                  <p>2-bedroom apartment, need help assembling shelves and table.</p>
+                </div>
+                <div class="info-row">
+                  <div class="budget">Budget: $90.00</div>
+                  <div class="proposals">5 proposals</div>
+                </div>
+                <div class="footer-row">
+                  <div class="posted">Posted 1 day ago</div>
+                  <div class="location">📍 Uptown, 3.2km</div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button class="secondary small">View Proposals</button>
+                <button class="accept">Manage Task</button>
+              </div>
+            </div>
+
+            <div class="task-card">
+              <div class="task-body">
+                <div class="task-meta">
+                  <div class="title">Garden cleanup</div>
+                  <div class="status-badge in-progress">In Progress</div>
+                </div>
+                <div class="details">
+                  <p>Need someone to trim hedges and mow lawn this weekend.</p>
+                </div>
+                <div class="info-row">
+                  <div class="budget">Budget: $60.00</div>
+                  <div class="proposals">2 proposals</div>
+                </div>
+                <div class="footer-row">
+                  <div class="posted">Posted 3 hours ago</div>
+                  <div class="location">📍 Suburbia, 5km</div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button class="secondary small">View Proposals</button>
+                <button class="accept">Edit Task</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Your Posted Tasks section -->
+          <div class="section-title" style="margin-top: 32px;">
+            <h2>Your Posted Tasks</h2>
+            <div class="found">8 tasks</div>
+          </div>
+          <div class="task-grid">
+            <div class="task-card">
+              <div class="task-body">
+                <div class="task-meta">
+                  <div class="title">Dog walking</div>
+                  <div class="status-badge completed">Completed</div>
+                </div>
+                <div class="details">
+                  <p>Daily walking for 2 dogs during vacation (5 days).</p>
+                </div>
+                <div class="info-row">
+                  <div class="budget">Spent: $120.00</div>
+                  <div class="proposals">N/A</div>
+                </div>
+                <div class="footer-row">
+                  <div class="posted">Finished 2 days ago</div>
+                  <div class="location">📍 Downtown, 1km</div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button class="secondary small">View Receipt</button>
+                <button class="accept">Leave Review</button>
+              </div>
+            </div>
+
+            <div class="task-card">
+              <div class="task-body">
+                <div class="task-meta">
+                  <div class="title">Window cleaning</div>
+                  <div class="status-badge open">Open</div>
+                </div>
+                <div class="details">
+                  <p>Exterior window cleaning for small office.</p>
+                </div>
+                <div class="info-row">
+                  <div class="budget">Budget: $70.00</div>
+                  <div class="proposals">3 proposals</div>
+                </div>
+                <div class="footer-row">
+                  <div class="posted">Posted 5 hours ago</div>
+                  <div class="location">📍 Midtown, 2km</div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button class="secondary small">View Proposals</button>
+                <button class="accept">Edit Task</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right summary -->
+        <div class="right-column">
+          <div class="card small">
+            <div class="card-title">Task Overview</div>
+            <div class="stat">
+              <div class="label">Active</div>
+              <div class="value">4</div>
+            </div>
+            <div class="stat">
+              <div class="label">Posted</div>
+              <div class="value">12</div>
+            </div>
+          </div>
+
+          <div class="card small">
+            <div class="card-title">Proposals Needing Review</div>
+            <div class="proposal">
+              <div class="proposal-info">
+                <div class="name">Alex P.</div>
+                <div class="sub">Applied to "Garden cleanup"</div>
+              </div>
+              <div class="actions">
+                <button class="small accept">Chat</button>
+              </div>
+            </div>
+            <div class="proposal">
+              <div class="proposal-info">
+                <div class="name">Leah K.</div>
+                <div class="sub">Applied to "Help assemble IKEA furniture"</div>
+              </div>
+              <div class="actions">
+                <button class="small accept">Chat</button>
+              </div>
+            </div>
+            <div class="proposal">
+              <div class="proposal-info">
+                <div class="name">Omar S.</div>
+                <div class="sub">Applied to "Window cleaning"</div>
+              </div>
+              <div class="actions">
+                <button class="small accept">Chat</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card small">
+            <div class="card-title">Top Responders</div>
+            <div class="user-row">
+              <div class="user">
+                <div class="user-avatar small"></div>
+                <div class="user-info">
+                  <div class="name">Alex P.</div>
+                  <div class="rating">⭐ 4.9</div>
+                </div>
+              </div>
+              <div class="user">
+                <div class="user-avatar small"></div>
+                <div class="user-info">
+                  <div class="name">Leah K.</div>
+                  <div class="rating">⭐ 4.8</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card small">
+            <div class="card-title">Alerts</div>
+            <div class="alert">
+              <div class="text">
+                <strong>"Garden cleanup"</strong> has no accepted proposal and expires in 1 day.
+              </div>
+            </div>
+            <div class="alert">
+              <div class="text">
+                <strong>"Window cleaning"</strong> has 3 proposals pending your review.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- content -->
+    </div> <!-- main -->
+  </div> <!-- app -->
+
+  <!-- New Task Modal (hidden) -->
+  <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Post New Task</h2>
+        <button class="close" id="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <label>Title</label>
+          <input type="text" placeholder="e.g., Help move boxes" />
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea placeholder="Describe what you need done"></textarea>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Category</label>
+            <div class="pill">Moving ▾</div>
+          </div>
+          <div class="field">
+            <label>Budget</label>
+            <input type="text" placeholder="$50 - $100" />
+          </div>
+        </div>
+        <div class="field">
+          <label>Location</label>
+          <input type="text" placeholder="e.g., Midtown" />
+        </div>
+        <button class="primary full" id="submit-task">Post Task</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="sidebar-and-post.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+@media (max-width: 1200px) {
+  .right-column {
+    display: none;
+  }
+  .task-grid {
+    grid-template-columns: 1fr;
+  }
+}

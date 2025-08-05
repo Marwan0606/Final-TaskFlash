@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="styles/bottom-bar.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/content.css">
+  <link rel="stylesheet" href="styles/tasks.css">
+  <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+<body>
+  
+  <div class="flex-container-header">
+    <div class="header">
+      <div class="left-section">
+        <p class="logo">TaskFlash</p>
+      </div>
+
+      <div class="middle-section">
+        <div class="search-bar-container">
+          <input type="text" class="search-input" placeholder="Search tasks...">
+          <button class="search-button">Search</button>
+        </div>
+      </div>
+
+      <div class="right-section">
+        <button class="login-button">Log In</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="dashboard">
+    <div class="recommended-tasks">
+      <h2 class="welcome-text">Recomended Tasks For You:</h2>
+      <button class="add-task-button js-add-task">Add Task Testing Feature</button>
+      
+      <div id="bottom-bar-placeholder"></div>
+  
+  
+      <div class="tasks-container js-task-container">
+  
+  
+      </div>
+    </div>
+    <div class="side-area">
+      <h2 class="overview-text">Your Overview:</h2>
+      <div class="overview-pannels">
+        <div class="earnings">
+        </div>
+        <div class="notifications">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="module" src="scripts/add-task.js"></script>
+  <script type="module" src="scripts/bottom-bar.js"></script>
+
+</body>
+</html>

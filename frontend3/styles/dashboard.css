@@ -1,0 +1,83 @@
+.dashboard {
+  display: flex;
+  align-items: flex-start;
+  gap: 90px;
+}
+
+.recommended-tasks {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  gap: 0px;
+  margin-left: 130px;
+}
+
+
+.side-area {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+}
+
+.overview-pannels {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.overview-text {
+  margin-top: 70px;
+  font-size: 25px;
+  color: rgb(144, 0, 197);
+}
+
+.welcome-text {
+  margin-top: 70px;
+  font-size: 25px;
+  color: rgb(144, 0, 197);
+}
+
+.dashboard-text {
+  margin-left: 80px;
+  margin-top: 50px;
+  margin-bottom: 0px;
+  
+  font-size: 40px;
+  color: rgb(144, 0, 197);
+}
+
+.earnings, .notifications, .profile-overview {
+  width: 470px;
+}
+
+.earnings {
+  height: 250px;
+
+  border-radius: 50px;
+
+  background-color: white;
+
+  box-shadow: 0px 4px 10px rgb(104, 104, 104);
+}
+
+.notifications {
+  height: 400px;
+
+  border-radius: 50px;
+
+  background-color: white;
+
+  box-shadow: 0px 4px 10px rgb(104, 104, 104);
+}
+
+.profile-overview {
+  height: 350px;
+
+  border-radius: 50px;
+
+  background-color: white;
+
+  box-shadow: 0px 4px 10px rgb(104, 104, 104);
+}

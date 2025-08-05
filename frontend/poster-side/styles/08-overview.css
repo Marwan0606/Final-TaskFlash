@@ -1,0 +1,23 @@
+.card {
+  background: var(--panel-bg);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card.small { padding: 16px 18px 24px; }
+.card-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f2f7;
+}
+.stat:last-child { border-bottom: none; }
+.value { font-weight: 600; }

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TaskFlash Login / Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    :root {
+      --purple: #855dff;
+      --gradient: linear-gradient(135deg,#855dff 0%,#a57bff 100%);
+      --radius: 12px;
+      --shadow: 0 25px 50px -15px rgba(133,93,255,0.15);
+      --bg: #f5f7fa;
+      --card-bg: #ffffff;
+      --muted: #6f7a9b;
+      --transition: .25s cubic-bezier(.4,.2,.2,1);
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin:0;
+      background: var(--bg);
+      color: #1f2d3a;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .container {
+      background: var(--card-bg);
+      border-radius:20px;
+      max-width: 900px;
+      width:100%;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .brand-side {
+      background: var(--gradient);
+      color: #fff;
+      padding: 60px 40px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:24px;
+    }
+    .brand-side h1 {
+      margin:0;
+      font-size:32px;
+      line-height:1.1;
+    }
+    .brand-side p {
+      margin:0;
+      font-size:16px;
+      opacity:.95;
+    }
+    .switcher {
+      margin-top: 8px;
+      font-size:14px;
+    }
+    .switcher button {
+      background: rgba(255,255,255,0.2);
+      border:none;
+      padding:10px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:600;
+      margin-right:8px;
+      color:#fff;
+      transition: var(--transition);
+    }
+    .switcher button.active {
+      background: #fff;
+      color: var(--purple);
+      box-shadow: 0 8px 30px -5px rgba(255,255,255,0.6);
+    }
+
+    .form-side {
+      padding: 60px 40px;
+      position: relative;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .tabs {
+      display:flex;
+      gap:8px;
+      margin-bottom:24px;
+    }
+    .tab-btn {
+      flex:1;
+      text-align:center;
+      padding:12px 0;
+      cursor:pointer;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0.05);
+      background:#f0f2f8;
+      font-weight:600;
+      transition: var(--transition);
+    }
+    .tab-btn.active {
+      background: var(--purple);
+      color:#fff;
+      box-shadow: 0 8px 30px -5px rgba(133,93,255,0.3);
+      border: none;
+    }
+    form {
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .field-group {
+      display:grid;
+      gap:16px;
+    }
+    .field {
+      display:flex;
+      flex-direction:column;
+      position:relative;
+    }
+    .field label {
+      font-size:12px;
+      margin-bottom:6px;
+      font-weight:600;
+    }
+    .field input {
+      padding:14px 16px;
+      border:1px solid #d7dce8;
+      border-radius:10px;
+      font-size:14px;
+      outline:none;
+      transition: var(--transition);
+    }
+    .field input:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(133,93,255,0.15);
+    }
+    .small {
+      font-size:12px;
+      color: var(--muted);
+      margin-top:4px;
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .actions {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:4px;
+    }
+    .btn {
+      padding:14px 18px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:15px;
+      transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--purple);
+      color:#fff;
+    }
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+    .btn-outline {
+      background: transparent;
+      border:1px solid var(--purple);
+      color: var(--purple);
+    }
+    .helper {
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size:13px;
+      gap:12px;
+    }
+    .toggle-password {
+      position:absolute;
+      right:12px;
+      top:38px;
+      background:none;
+      border:none;
+      cursor:pointer;
+      font-size:12px;
+      padding:4px;
+      color: var(--muted);
+    }
+    .divider {
+      text-align:center;
+      font-size:13px;
+      margin:12px 0;
+      position: relative;
+    }
+    .divider::before, .divider::after {
+      content:"";
+      height:1px;
+      background:#e6e9ef;
+      position:absolute;
+      top:50%;
+      width:40%;
+    }
+    .divider::before { left:0; }
+    .divider::after { right:0; }
+    .divider span {
+      background: #fff;
+      padding:0 8px;
+      position:relative;
+      z-index:1;
+    }
+    .error {
+      color:#d9534f;
+      font-size:12px;
+      margin-top:4px;
+    }
+    .inline {
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    @media (max-width:1000px){
+      .container {
+        grid-template-columns:1fr;
+      }
+      .brand-side {
+        display:none;
+      }
+      .form-side {
+        padding:40px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" aria-label="Login and registration container">
+    <div class="brand-side" aria-hidden="true">
+      <h1>Welcome to TaskFlash</h1>
+      <p>Get things done faster. Log in to manage your tasks or create a new account to start posting or completing work.</p>
+      <div class="switcher" aria-label="Quick switch">
+        <button type="button" class="active js-login" data-target="login">Login</button>
+        <button type="button" data-target="signup" class="js-signup">Sign Up</button>
+      </div>
+    </div>
+    <div class="form-side">
+      <div class="tabs" role="tablist">
+        <div class="tab-btn active" data-view="login" role="tab" aria-selected="true">Login</div>
+        <div class="tab-btn" data-view="signup" role="tab" aria-selected="false">Create Account</div>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input id="login-email" type="email" required placeholder="you@example.com" autocomplete="username" class="js-email"/>
+          <div class="error" data-for="login-email" aria-live="polite" style="display:none;"></div>
+        </div>
+        <div class="field" style="position:relative;">
+          <label for="login-password">Password</label>
+          <input id="login-password" type="password" required placeholder="••••••••" autocomplete="current-password" class='js-password'/>
+          <button type="button" class="toggle-password" data-target="login-password" aria-label="Toggle password visibility">Show</button>
+          <div class="error" data-for="login-password" aria-live="polite" style="display:none;"></div>
+        </div>
+        <div class="helper">
+          <label><input type="checkbox" /> Remember me</label>
+          <a href="#" style="text-decoration:none; color: var(--purple); font-weight:600;">Forgot password?</a>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Log In</button>
+        </div>
+        <div class="divider"><span>or</span></div>
+        <div class="inline">
+          <button type="button" class="btn btn-outline" aria-label="Continue with Google">Continue with Google</button>
+          <button type="button" class="btn btn-outline" aria-label="Continue with Apple">Continue with Apple</button>
+        </div>
+      </form>
+
+      <!-- SIGNUP FORM -->
+      <form id="signup-form" style="display:none;" novalidate>
+        <div class="field-group">
+          <div class="field">
+            <label for="signup-name">Full Name</label>
+            <input id="signup-name" type="text" required placeholder="Jane Doe" autocomplete="name" class="js-signup-name"/>
+            <div class="error" data-for="signup-name" aria-live="polite" style="display:none;"></div>
+          </div>
+          <div class="field">
+            <label for="signup-email">Email</label>
+            <input id="signup-email" type="email" required placeholder="you@example.com" autocomplete="email" class="js-signup-email"/>
+            <div class="error" data-for="signup-email" aria-live="polite" style="display:none;"></div>
+          </div>
+        </div>
+        <div class="field" style="position:relative;">
+          <label for="signup-password">Password</label>
+          <input id="signup-password" type="password" required placeholder="••••••••" autocomplete="new-password" class="js-signup-password"/>
+          <button type="button" class="toggle-password" data-target="signup-password" aria-label="Toggle password visibility">Show</button>
+          <div class="error" data-for="signup-password" aria-live="polite" style="display:none;"></div>
+        </div>
+        
+        <div class="field" style="position:relative;">
+          <label for="signup-confirm">Confirm Password</label>
+          <input id="signup-confirm" type="password" required placeholder="••••••••" autocomplete="new-password" class="js-signup-confirm"/>
+          <button type="button" class="toggle-password" data-target="signup-confirm" aria-label="Toggle password visibility">Show</button>
+          <div class="error" data-for="signup-confirm" aria-live="polite" style="display:none;"></div>
+        </div>
+
+        <div class="field" style="position:relative;">
+          <button type="button" class="toggle-password" data-target="signup-confirm" aria-label="Toggle password visibility">Show</button>
+          <div class="error" data-for="signup-confirm" aria-live="polite" style="display:none;"></div>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Create Account</button>
+        </div>
+        <div class="divider"><span>or</span></div>
+        <div class="inline">
+          <button type="button" class="btn btn-outline" aria-label="Continue with Google">Continue with Google</button>
+          <button type="button" class="btn btn-outline" aria-label="Continue with Apple">Continue with Apple</button>
+        </div>
+        <div class="small">
+          <div>By signing up you agree to our <a href="#" style="color: var(--purple); text-decoration:none;">Terms</a> and <a href="#" style="color: var(--purple); text-decoration:none;">Privacy Policy</a>.</div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Tab toggle
+    const loginTab = document.querySelector('[data-view="login"]');
+    const signupTab = document.querySelector('[data-view="signup"]');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const switcherBtns = document.querySelectorAll('.switcher button');
+
+    function setActive(view) {
+      if (view === 'login') {
+        loginTab.classList.add('active');
+        signupTab.classList.remove('active');
+        loginForm.style.display = '';
+        signupForm.style.display = 'none';
+        switcherBtns.forEach(b => b.classList.toggle('active', b.dataset.target === 'login'));
+      } else {
+        signupTab.classList.add('active');
+        loginTab.classList.remove('active');
+        signupForm.style.display = '';
+        loginForm.style.display = 'none';
+        switcherBtns.forEach(b => b.classList.toggle('active', b.dataset.target === 'signup'));
+      }
+    }
+    loginTab.addEventListener('click', () => setActive('login'));
+    signupTab.addEventListener('click', () => setActive('signup'));
+    switcherBtns.forEach(b => {
+      b.addEventListener('click', () => setActive(b.dataset.target));
+    });
+
+    // Password toggle
+    document.querySelectorAll('.toggle-password').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        if (target.type === 'password') {
+          target.type = 'text';
+          btn.textContent = 'Hide';
+        } else {
+          target.type = 'password';
+          btn.textContent = 'Show';
+        }
+      });
+    });
+
+
+    // Basic validation stubs
+    function showError(input, message) {
+      const err = document.querySelector(`.error[data-for="${input.id}"]`);
+      if (err) {
+        err.textContent = message;
+        err.style.display = 'block';
+      }
+      input.setAttribute('aria-invalid', 'true');
+    }
+    function clearError(input) {
+      const err = document.querySelector(`.error[data-for="${input.id}"]`);
+      if (err) {
+        err.textContent = '';
+        err.style.display = 'none';
+      }
+      input.removeAttribute('aria-invalid');
+    }
+
+    document.getElementById('login-form').addEventListener('submit', e => {
+      e.preventDefault();
+      let valid = true;
+      const email = document.getElementById('login-email');
+      const pass = document.getElementById('login-password');
+      clearError(email);
+      clearError(pass);
+      if (!email.value.trim()) {
+        showError(email, 'Email is required.');
+        valid = false;
+      }
+      if (!pass.value.trim()) {
+        showError(pass, 'Password is required.');
+        valid = false;
+      }
+      if (valid) {
+        // placeholder: perform login
+        alert('Logged in (stub).');
+      }
+    });
+
+    document.getElementById('signup-form').addEventListener('submit', e => {
+      e.preventDefault();
+      let valid = true;
+      const name = document.getElementById('signup-name');
+      const email = document.getElementById('signup-email');
+      const pass = document.getElementById('signup-password');
+      const confirm = document.getElementById('signup-confirm');
+      [name, email, pass, confirm].forEach(i => clearError(i));
+      if (!name.value.trim()) {
+        showError(name, 'Name is required.');
+        valid = false;
+      }
+      if (!email.value.trim()) {
+        showError(email, 'Email is required.');
+        valid = false;
+      }
+      if (!pass.value) {
+        showError(pass, 'Password is required.');
+        valid = false;
+      }
+      if (pass.value && confirm.value !== pass.value) {
+        showError(confirm, 'Passwords do not match.');
+        valid = false;
+      }
+      if (valid) {
+        // placeholder: perform signup
+        alert('Account created (stub).');
+      }
+    });
+  </script>
+  <script type="module" src="./scripts/addUserData.js"></script>
+  
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+</body>
+</html>

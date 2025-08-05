@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TaskFlash Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/01-reset.css" />
+  <link rel="stylesheet" href="styles/02-variables.css" />
+  <link rel="stylesheet" href="styles/03-layout.css" />
+  <link rel="stylesheet" href="styles/04-sidebar.css" />
+  <link rel="stylesheet" href="styles/05-topbar.css" />
+  <link rel="stylesheet" href="styles/06-hero-filters.css" />
+  <link rel="stylesheet" href="styles/07-task-cards.css" />
+  <link rel="stylesheet" href="styles/08-right-panels.css" />
+  <link rel="stylesheet" href="styles/09-utilities.css" />
+  <link rel="stylesheet" href="styles/10-responsive.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <div class="logo-symbol">TF</div>
+        <div class="logo-text">TaskFlash</div>
+      </div>
+      <nav class="nav">
+        <button class="nav-btn active" aria-label="Home">
+          <div class="icon">🏠</div>
+          <div class="label">Home</div>
+        </button>
+        <button class="nav-btn" aria-label="Tasks">
+          <div class="icon">🗂</div>
+          <div class="label">Tasks</div>
+        </button>
+        <button class="nav-btn" aria-label="Earnings">
+          <div class="icon">💰</div>
+          <div class="label">Earnings</div>
+        </button>
+        <button class="nav-btn" aria-label="Messages">
+          <div class="icon">💬</div>
+          <div class="label">Messages</div>
+        </button>
+        <button class="nav-btn" aria-label="Team">
+          <div class="icon">👥</div>
+          <div class="label">Team</div>
+        </button>
+      </nav>
+      <div class="bottom-icon" aria-label="Help">
+        <div class="icon">?</div>
+        <div class="label">Help</div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <div class="main">
+      <!-- Top bar -->
+      <header class="topbar">
+        <div class="status">
+          <div class="available">
+            Available for Work
+            <label class="toggle">
+              <input type="checkbox" checked />
+              <span class="slider"></span>
+            </label>
+            <span class="online">Online</span>
+          </div>
+        </div>
+        <div class="user-panel">
+          <div class="notifications">
+            🔔<span class="badge">3</span>
+          </div>
+          <div class="profile">
+            <div class="avatar" aria-label="User avatar"></div>
+            <div class="info">
+              <div class="name js-name"></div>
+              <div class="rating js-rating">⭐ 4.9 <span class="small">(127 reviews)</span></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Full-width hero -->
+      <section class="hero-full">
+        <div class="hero">
+          <div class="welcome">
+            <h1 class="js-welcome"><span class="wave">👋</span></h1>
+            <p>You have <strong>18 premium tasks</strong> available in your area</p>
+          </div>
+          <div class="score-box">
+            <div class="score-label js-rating2">★ 4.98</div>
+            <div class="score-sub">342 reviews</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Content columns -->
+      <div class="content">
+        <!-- Left column: filters + tasks -->
+        <div class="left-column">
+          <!-- Filters -->
+          <div class="filters">
+            <div class="search">
+              <input type="text" placeholder="Search tasks..." aria-label="Search tasks" />
+            </div>
+            <div class="dropdowns">
+              <div class="pill">All Categories ▾</div>
+              <div class="pill">Distance ▾</div>
+              <div class="pill">Price Range ▾</div>
+              <div class="filter-btn">Filters</div>
+            </div>
+            <div class="tags">
+              <div class="tag">Cleaning <span class="x">×</span></div>
+              <div class="tag">Within 5km <span class="x">×</span></div>
+            </div>
+          </div>
+
+          <!-- Available tasks header -->
+          <div class="section-title">
+            <h2>Available Tasks</h2>
+            <div class="found">8 tasks found</div>
+          </div>
+
+          <!-- Task grid (3 per row) -->
+          <div class="task-grid js-task-grid">
+          </div>
+        </div>
+
+        <!-- Right column: summary panels -->
+        <div class="right-column">
+          <div class="card small">
+            <div class="card-title">Active Tasks</div>
+            <div class="stat">
+              <div class="label">In Progress</div>
+              <div class="value">2 tasks</div>
+            </div>
+            <div class="stat">
+              <div class="label">Pending Review</div>
+              <div class="value warning">1 task</div>
+            </div>
+            <div class="stat">
+              <div class="label">Completed Today</div>
+              <div class="value success">3 tasks</div>
+            </div>
+          </div>
+
+          <div class="card small">
+            <div class="card-title">Earnings</div>
+            <div class="earning-row">
+              <div class="label">This Week</div>
+              <div class="amount">$1450.75</div>
+            </div>
+            <div class="progress-bar">
+              <div class="fill" style="width:96%;"></div>
+            </div>
+            <div class="subtext">96% of weekly goal</div>
+
+            <div class="earning-row">
+              <div class="label">Pending Payout</div>
+              <div class="amount pending">$487.25</div>
+            </div>
+            <div class="note">Available in 2 days</div>
+
+            <div class="earning-row">
+              <div class="label">Monthly Total</div>
+              <div class="amount green">$5823.50</div>
+            </div>
+            <div class="earning-row">
+              <div class="label">Yearly Projection</div>
+              <div class="sub">At $1450.75/week rate</div>
+              <div class="amount purple">$75,439</div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- end content -->
+    </div> <!-- end main -->
+  </div> <!-- end app -->
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script type="module" src="./scripts/generateDash.js"></script>
+</body>
+</html>

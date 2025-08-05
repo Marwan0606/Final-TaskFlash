@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TaskFlash Login / Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --purple: #855dff;
+      --gradient: linear-gradient(135deg,#855dff 0%,#a57bff 100%);
+      --radius: 12px;
+      --shadow: 0 25px 50px -15px rgba(133,93,255,0.15);
+      --bg: #ffffff;
+      --card-bg: #ffffff;
+      --transition: .25s ease;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: var(--bg);
+      overflow: hidden;
+      color: #1f2d3a;
+    }
+    /* SVG background with glow filter */
+    svg.background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .line.base {
+      stroke: rgba(0,0,0,0.1);
+      stroke-width: 1.2;
+      fill: none;
+    }
+    .line.highlight {
+      stroke: var(--purple);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-dasharray: 150 300;
+      animation: dash 5s linear infinite;
+      filter: url(#glow);
+    }
+    @keyframes dash {
+      to { stroke-dashoffset: -450; }
+    }
+    .container {
+      background: var(--card-bg);
+      border-radius: 20px;
+      max-width: 900px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .brand-side {
+      background: var(--gradient);
+      color: #fff;
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+    .brand-side h1 { font-size: 32px; margin: 0; }
+    .brand-side p  { font-size: 16px; opacity: .95; margin: 0; }
+    .switcher { font-size: 14px; margin-top: 8px; }
+    .switcher button {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-right: 8px;
+      color: #fff;
+      transition: var(--transition);
+    }
+    .switcher button.active {
+      background: #fff;
+      color: var(--purple);
+      box-shadow: 0 8px 30px -5px rgba(255,255,255,0.6);
+    }
+    .form-side {
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #1f2d3a;
+    }
+    .tabs { display: flex; gap: 8px; margin-bottom: 24px; }
+    .tab-btn {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.05);
+      background: #f0f2f8;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .tab-btn.active {
+      background: var(--purple);
+      color: #fff;
+      box-shadow: 0 8px 30px -5px rgba(133,93,255,0.3);
+      border: none;
+    }
+    .field { display: flex; flex-direction: column; margin-bottom: 16px; }
+    .field label { font-size: 12px; margin-bottom: 6px; font-weight: 600; }
+    .field input {
+      padding: 14px 16px;
+      border: 1px solid #d7dce8;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: var(--transition);
+    }
+    .field input:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(133,93,255,0.15);
+      outline: none;
+    }
+    .helper {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .btn {
+      padding: 14px 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      transition: var(--transition);
+    }
+    .btn-primary { background: var(--purple); color: #fff; }
+    .btn-primary:hover { filter: brightness(1.05); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--purple);
+      color: var(--purple);
+    }
+    .divider { position: relative; text-align: center; font-size: 13px; margin: 16px 0; }
+    .divider::before, .divider::after { content: ""; position: absolute; top: 50%; width: 40%; height: 1px; background: #e6e9ef; }
+    .divider::before { left: 0; } .divider::after { right: 0; }
+    .divider span { background: #fff; padding: 0 8px; position: relative; z-index: 1; }
+    .inline { display: flex; gap: 8px; flex-wrap: wrap; }
+    @media (max-width:1000px) {
+      .container { grid-template-columns: 1fr; }
+      .brand-side { display: none; }
+      .form-side { padding: 40px 24px; }
+    }
+
+    .problem-text {
+      color: red;
+      margin-bottom: 20px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+  </style>
+</head>
+<body>
+  <svg class="background" viewBox="0 0 1200 600" preserveAspectRatio="none">
+    <defs>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+        <feMerge>
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <!-- Four random squiggles -->
+    <path class="line base" d="M0,80 C200,0 400,160 600,40 C800,-80 1000,200 1200,80" />
+    <path class="line highlight" d="M0,80 C200,0 400,160 600,40 C800,-80 1000,200 1200,80" />
+    <path class="line base" d="M0,200 C150,300 350,100 550,250 C750,380 950,120 1200,300" />
+    <path class="line highlight" d="M0,200 C150,300 350,100 550,250 C750,380 950,120 1200,300" />
+    <path class="line base" d="M0,360 C100,450 300,200 500,350 C700,500 900,230 1200,360" />
+    <path class="line highlight" d="M0,360 C100,450 300,200 500,350 C700,500 900,230 1200,360" />
+    <path class="line base" d="M0,480 C250,600 450,300 700,500 C900,650 1100,350 1200,480" />
+    <path class="line highlight" d="M0,480 C250,600 450,300 700,500 C900,650 1100,350 1200,480" />
+  </svg>
+  <div class="container">
+    <div class="brand-side" aria-hidden="true">
+      <h1>Welcome to TaskFlash</h1>
+      <p>Get things done faster. Log in or sign up to start.</p>
+      <div class="switcher">
+        <button type="button" class="active" data-target="login">Login</button>
+        <button type="button" data-target="signup">Sign Up</button>
+      </div>
+    </div>
+    <div class="form-side">
+      <div class="tabs">
+        <div class="tab-btn active" data-view="login">Login</div>
+        <div class="tab-btn" data-view="signup">Sign Up</div>
+      </div>
+      <form id="login-form">
+        <div class="field"><label for="login-email">Email</label><input id="login-email" class="js-email" type="email" placeholder="you@example.com" /></div>
+        <div class="field"><label for="login-password">Password</label><input id="login-password" class="js-password" type="password" placeholder="••••••••" /></div>
+        <div class="helper"><label><input type="checkbox" /> Remember me</label><a href="#" style="color:var(--purple);text-decoration:none;font-weight:600;">Forgot?</a></div>
+        <div class="problem-text js-problem"></div>
+        <button type="submit" class="btn btn-primary js-login">Log In</button>
+        <div class="divider"><span>or</span></div>
+        <div class="inline"><button type="button" class="btn btn-outline">Google</button><button type="button" class="btn btn-outline">Apple</button></div>
+      </form>
+      <form id="signup-form" style="display:none;">
+        <div class="field"><label for="name">Full Name</label><input id="name" class="js-signup-name" type="text" placeholder="Jane Doe" /></div>
+        <div class="field"><label for="email">Email</label><input id="email" class="js-signup-email" type="email" placeholder="you@example.com" /></div>
+        <div class="field"><label for="password">Password</label><input id="password" class="js-signup-password" type="password" placeholder="••••••••" /></div>
+        <button type="button" class="btn btn-primary js-signup">Create Account</button>
+      </form>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="module" src="./scripts/addUserData.js"></script>
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const forms = { login: document.getElementById('login-form'), signup: document.getElementById('signup-form') };
+    const sw = document.querySelectorAll('.switcher button');
+    function show(v) {
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.view === v));
+      sw.forEach(b => b.classList.toggle('active', b.dataset.target === v));
+      forms.login.style.display = v === 'login' ? 'block' : 'none';
+      forms.signup.style.display = v === 'signup' ? 'block' : 'none';
+    }
+    tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.view)));
+    sw.forEach(b => b.addEventListener('click', () => show(b.dataset.target)));
+  </script>
+</body>
+</html>
