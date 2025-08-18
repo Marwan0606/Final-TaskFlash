@@ -13,7 +13,7 @@ app.use('/starter', express.static(path.join(__dirname, '../frontend/starter-pag
 
 app.use(express.static('./frontend/'))
 
-app.use(express.json()) 
+app.use(express.json())
 
 app.use('/api/v1/tasks', tasks)
 

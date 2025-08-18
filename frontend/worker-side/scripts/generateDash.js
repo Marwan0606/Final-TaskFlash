@@ -28,7 +28,7 @@ const showTasks = async ()=>{
             </div>
             <div class="location">📍 Downtown, 2.3km</div>
           </div>
-          <button class="accept">Accept Task</button>
+          <button class="accept js-accept-button" data-product-id="${task._id}">Accept Task</button>
         </div>
         `
       })
@@ -38,6 +38,32 @@ const showTasks = async ()=>{
     const tasksHTML = generateTasksHTML()
     
     document.querySelector('.js-task-grid').innerHTML = tasksHTML;
+
+
+
+
+
+    const addAcceptorId = async (taskId)=>{
+      try {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const userId = user._id
+
+        const response = await axios.patch(`/api/v1/tasks/${taskId}`, {accepterID: userId})
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    document.querySelectorAll('.js-accept-button').forEach((button) => {
+      button.addEventListener('click', () => {
+        const taskId = button.dataset.productId;
+        console.log(taskId)
+        addAcceptorId(taskId)
+      });
+    });
+
+
 
   } catch (error) {
     console.log(error)

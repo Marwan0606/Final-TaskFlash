@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({ //this sets the specific type of data e
     type:String,
     required:[true, 'must provide name']
   },
+  role: {
+    type:String,
+    required:[true, 'role required are you a worker or a poster']
+  },
   rating: {
     type:mongoose.Schema.Types.Decimal128,
     default: 0.00
